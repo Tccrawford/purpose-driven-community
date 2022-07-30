@@ -1,11 +1,12 @@
 import './App.css';
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
 import {useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserContext from './context/UserContext';
 import {Container} from "react-bootstrap";
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm'
+import HomePage from './Home';
 
 
 
@@ -14,23 +15,26 @@ function App() {
     return (    
       <UserContext.Provider value={user}>
         <Router>
-          <NavBar />
           <Container>
               <Routes>
               <Route 
-                  path="/"
+                  path="/register"
                   element={<RegisterForm setUser={setUser} />}
                 />
                 <Route 
                   path="/login"
                   element={<LoginForm setUser={setUser} />}
                 />
+                <Route 
+                  path="/"
+                  element={<HomePage />}
+                /> 
                 
               </Routes>
           </Container>
         </Router>
         
-          <h1>Purpose Driven Community</h1>
+         
       </UserContext.Provider>
     
   );

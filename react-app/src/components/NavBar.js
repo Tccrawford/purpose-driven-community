@@ -7,10 +7,10 @@ function NavBar(){
         <Navbar bg="light" expand="lg">
             <Container>
                 <Nav className="me-auto">
-                    <Nav.Link href="./home.js">Home</Nav.Link>
-                    <Nav.Link href="./donate.js">Donate</Nav.Link>
-                    <Nav.Link href="./about.js">About</Nav.Link>
-                    <Nav.Link href="/LoginForm.js">Login</Nav.Link>
+                    <Nav.Link href="./home">Home</Nav.Link>
+                    <Nav.Link href="./donate">Donate</Nav.Link>
+                    <Nav.Link href="./about">About</Nav.Link>
+                    <Nav.Link href="/login">Login</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

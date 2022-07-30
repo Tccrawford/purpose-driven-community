@@ -1,25 +1,32 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import UserContext from "./context/UserContext";
+// import UserContext from "./context/UserContext";
 import {Form, Button, Row, Col} from "react-bootstrap";
+// require('dotenv').config()
 
 export default function LoginForm({setUser}) {
     const navigate = useNavigate();
     //const user = useContext(UserContext);
     const [email, setEmail] = useState("");
-
-    const loginUser = async (e) => {
+    const [password, setPassword] = useState("")
+   
+    const loginUser = async (e) => { 
+        const REACT_DB_URL = 'http://localhost:3001/'
         e.preventDefault();
         console.log(email);
         // const OUR_DB_URL = `http://localhost:3001/users/${email}`;
         const response = await fetch(
-            `${process.env.REACT_APP_OUR_DB_URL}users/${email}`
+            `${REACT_DB_URL}users/${email}`
+            // `${REACT_DB_URL}users/${password}`
         );
         const data = await response.json();
         console.log(data);
         if (data) {
-            setUser({username: data.email, isAuthenticated: true});
-            navigate(`/userprofile`);
+            setUser({
+                username: data.email,
+                isAuthenticated: true
+            });
+            navigate(`/donate`);
         } else {
             navigate(`/`);
         }
@@ -29,7 +36,7 @@ export default function LoginForm({setUser}) {
         <Row className="justify-content-md-center">
             <Col xs={6}>
                 <Form onSubmit={loginUser}>
-                    <h2 className="center"> SQLDaddy Bookclub</h2>
+                    <h2 className="center"> Purpose Driven Community</h2>
                     <Form.Group className="mb-3">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
@@ -45,6 +52,18 @@ export default function LoginForm({setUser}) {
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            placeholder="Password"
+                            name="password"
+                            id="password"
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                console.log(password);
+                            }}
+                        />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">

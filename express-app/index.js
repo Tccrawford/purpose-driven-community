@@ -1,12 +1,24 @@
+// DEPENDENCIES
+const express = require("express");
+const cors = require('cors');
+const path = require('path');
+
+// CONFIGURATION
+//require('dotenv').config({path: '../.env'})
 require('dotenv').config()
-const express = require('express')
-const app = express()
+const app = express();
 
+// MIDDLEWARE
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(cors());
 
-//Routes
-app.get('/', (req, res) => {
-    res.render('login')
-})
+//Controllers
 
+const usersController = require("./controllers/users_controller.js")
+app.use('/users', usersController)
 
-app.listen(process.env.PORT)
+// LISTEN
+app.listen(process.env.PORT, () => {
+    console.log("Listening on port: ", process.env.PORT);
+});
