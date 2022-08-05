@@ -7,6 +7,7 @@ import {Container} from "react-bootstrap";
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm'
 import HomePage from './Home';
+import DonationForm from './Donate';
 
 
 
@@ -29,6 +30,10 @@ function App() {
                   path="/"
                   element={<HomePage />}
                 /> 
+                <Route 
+                  path="/donate"
+                  element = {<DonationForm />}
+                />
                 
               </Routes>
           </Container>

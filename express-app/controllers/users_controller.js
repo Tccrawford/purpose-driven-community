@@ -1,20 +1,22 @@
-const { db } =-require("../dbConnection")
+const { db } = require("../dbConnection.js")
 const express = require('express')
-const users = express.Router
+const router = express.Router()
 
 //Create Routes
-users.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try{
         console.log("req body", req.body);
         const response = await queryToInsertUsers(req.body)
+        
         res.status(200).json(response);
     } catch(error){
+        console.log( "error", error);
         res.status(500).json(error);
     }
 })
 
 //Read Routes
-users.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
       const response = await queryToFetchUsers();
       res.status(200).json(response);
@@ -23,17 +25,17 @@ users.get("/", async (req, res) => {
     }
   });
   
-  users.get("/:email", async (req, res) => {
+  router.get("/:email", async (req, res) => {
     const response = await queryToFetchUsers(req.params.email);
     res.status(200).json(response);
   });
 
   //Queries
   const queryToInsertUsers = (body) => {
-    //console.log(body)
-    return db.one(
+    console.log("sequel query string", body)
+    return db.manyOrNone(
       `
-      INSERT INTO users (email, password, firstname, lastname)
+      INSERT INTO active_users (email, password, first_name, last_name)
       VALUES ($/email/, $/password/, $/firstname/, $/lastname/)
       RETURNING email
       `,
@@ -54,4 +56,4 @@ users.get("/", async (req, res) => {
   }
   
 
-  module.exports = users
+  module.exports = router

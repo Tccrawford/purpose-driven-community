@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Form, Button, Col, Row} from "react-bootstrap";
 import {Link, useNavigate} from "react-router-dom";
 
+
 export default function RegisterForm({setUser}) {
     const [emailInput, setEmailInput] = useState("");
     const [firstNameInput, setFirstNameInput] = useState("");
@@ -13,20 +14,23 @@ export default function RegisterForm({setUser}) {
         e.preventDefault();;
         const requestOptions = {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
             body: JSON.stringify({
                 firstname: firstNameInput,
                 lastname: lastNameInput,
                 email: emailInput,
-                password: passwordInput,
+                password: passwordInput
             }),
         };
-        const response = await fetch(
-            process.env.REACT_DB_URL + "users",
-            requestOptions
-        );
+        // console.log(process.env.REACT_APP_DB_URL)
+        const response = await 
+            fetch(process.env.REACT_APP_DB_URL + "users", requestOptions)
+        
         const data = await response.json();
-        // console.log(data);
+        console.log("data from register form", data);
         if (data) {
             setUser({username: data.email, isAuthenticated: true});
             navigate(`/`);

@@ -1,8 +1,8 @@
 //Dependencies
-const path = require('path')
+// const path = require('path')
 
 //Configuration
-require('dotenv').config({path: '../.env'})
+require('dotenv').config()
 
 const initOptions = {
     capSQL: true,
@@ -20,20 +20,21 @@ const initOptions = {
 const pgp = require('pg-promise')(initOptions)
 
 const cn = {
-    host:   process.env.DB_HOST,
-    port:   process.env.DB_PORT,
-    database:   process.env.DB_DATABASE,
-    user:    process.env.DB_USER,
-    password:   process.env.DB_PASSWORD,
-    ssl: {
-        rejectUnauthorized: false,
-    },
+    host:   "localhost",
+    port:   "5432",
+    database:   "purpose_driven_community",
+    user:    "postgres",
+    password:   "taytay18",
+    // ssl: {
+    //     rejectUnauthorized: false,
+    // },
 }
 
 const db = pgp(cn)
-
+console.log("db", db)
 db.connect()
     .then(obj => {
+        console.log("i made it here")
         obj.done();
     })
     .catch(error => {
