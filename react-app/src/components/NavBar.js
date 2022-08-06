@@ -2,15 +2,19 @@ import React from "react";
 // import Def from "../default";
 import {Navbar, Nav, Container} from "react-bootstrap";
 
+
 function NavBar(){
     return(
-        <Navbar bg="light" expand="lg">
+        <Navbar>
             <Container>
-                <Nav className="me-auto">
-                    <Nav.Link href="./home">Home</Nav.Link>
-                    <Nav.Link href="./donate">Donate</Nav.Link>
-                    <Nav.Link href="./about">About</Nav.Link>
-                    <Nav.Link href="/login">Login</Nav.Link>
+                <Nav>
+                    <Nav className="custom-navbar-brand">Purpose Driven Community</Nav>
+                    <Nav.Link className="custom-navbar-elements" href="./">Home </Nav.Link>
+                    <Nav.Link className="custom-navbar-elements" href="./donate">Donate </Nav.Link>
+                    <Nav.Link className="custom-navbar-elements" href="./about">About </Nav.Link>
+                    <Nav.Link className="custom-navbar-elements" href="/register">Register </Nav.Link>
+                    <Nav.Link className="custom-navbar-elements" href="/login">Login </Nav.Link>
+                    
                 </Nav>
             </Container>
         </Navbar>

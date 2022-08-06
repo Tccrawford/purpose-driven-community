@@ -11,7 +11,7 @@ export default function RegisterForm({setUser}) {
     const navigate = useNavigate();
 
     const queryToInsertUser = async (e) => {
-        e.preventDefault();;
+        e.preventDefault();
         const requestOptions = {
             method: "POST",
             headers: {

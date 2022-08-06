@@ -28,9 +28,14 @@ app.listen(process.env.PORT, () => {
 //Stripe
 
 app.post('/create-checkout-session', async (req, res) => {
-    try{
-
-    } catch(e) {
-        res.status(500).json({error: e.message})
-    }
+        console.log("made it to checkout")
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types:['card'],
+            mode: 'payment',
+            currency: 'usd',
+            unit_amount: donation,
+            success_url: 'http://localhost:3000/thank-you',
+            cancel_url: 'http://localhost:3000/cancel'
+        })
+        res.json({url: session.url})
 })

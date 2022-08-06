@@ -37,6 +37,32 @@
   }
 }
 
-.navbar-custom{
-  display: inline-block
+.custom-navbar{
+  text-align: center;
+  align-items: center;
+}
+
+.custom-navbar-elements{
+  display: block;
+  justify-content: right;
+  padding: 8px;
+  background-color: cadetblue;
+  position: sticky;
+  border-top: 1px, #282c34;
+}
+.custom-navbar-brand{
+  justify-content: right;
+  padding: 8px;
+  background-color: cadetblue;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+.custom-navbar-elements :hover{
+  background-color: black;
+}
+
+.homepage-image{
+  position: fixed;
+ justify-content: left;
 }
